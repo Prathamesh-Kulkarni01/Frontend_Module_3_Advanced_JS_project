@@ -20,9 +20,12 @@ function onSubmit(event) {
         localStorage.setItem('fullName', fullName);
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
-        
-        document.getElementById('registerForm').reset();
+        location.href="./profile.html"
     }
+}
+
+if(location.href.includes("profile")&&!localStorage.getItem("fullName")){
+    location.href="./index.html"
 }
 
 
@@ -35,13 +38,9 @@ email2.innerHTML = "Email: "+(localStorage.getItem("email")||"");
 password2.innerHTML = "Password: "+(localStorage.getItem("password")||"");
 
 function onLogout(event) {
-    localStorage.removeItem("fullName");
-    localStorage.removeItem("email");
-    localStorage.removeItem("password");
+    event.preventDefault();
+    localStorage.setItem('fullName', "");
+    localStorage.setItem('email', "");
+    localStorage.setItem('password', "");
     location.href="/index.html"
-}
-
-if(location.href.includes("profile")&&!localStorage.getItem("fullName")){
-    location.href="/index.html"
-    alert("SignUp Please !")
 }
